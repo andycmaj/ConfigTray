@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Copyright (C) Microsoft Corporation, 2006
+    For more information on this file see the on-boarding document located at:
+    http://msnweb/teams/EFP/Shared%20Resource%20System/Onboarding.doc
+-->
+<config xmlns="http://scripts.live.com/namespaces/ExFxFEConfiguration.xsd">
+  <!-- 
+        _Node_Summary___________________________________________________________________________
+
+            Contains all the attributes of the current consumer hosting the Live Frontend 
+
+        _Additional_Schema_Remarks______________________________________________________________
+
+            config/consumer[@name] - A string that represents a unique name for the product/
+            consumer hosting the Live Frontend. This string will need to be assigned or coordinated 
+            with the EFP team to ensure a corresponding entry is made on the resource server side. 
+            See the list of existing consumer names at:
+                    http://msnweb/teams/EFP/Shared%20Resource%20System/Live%20Frontend%20Consumers.xls
+
+            Special consumer names that like Live.Latest can be used and shared by products during 
+            development.
+    -->
+  <consumer name="Live.Spaces">
+    <!-- 
+        _Node_Summary___________________________________________________________________________
+
+            The version of the current consumer hosting the Live Frontend
+
+        _Additional_Schema_Remarks______________________________________________________________
+
+            ../Version[@major] - Represents the major version of the parent element. Valid range: 0 - 255
+
+            ../Version[@minor] - The minor version of the parent element. Valid range: 0 - short.MaxValue
+
+            ../Version[@build] - Represents the major version of the parent element. Note that this should 
+            included only the whole number build and not the extended dot build value. Valid range: 0 
+            to short.MaxValue
+        -->
+    <version major="1" build="0" />
+    <!-- 
+        _Node_Summary___________________________________________________________________________
+
+            Describes the location of the Resource Server and the method of communication to 
+            keep this consumer up to date with regards to the agents being use.
+
+        _Additional_Schema_Remarks______________________________________________________________
+
+            ../Server[@scheme] - This is usually just the protocol to be used when constructing the URL 
+            to the Resource Server. Note that when this attribute is in the "Server" element it is required, 
+            when contained in the resourceServer element this attribute is optional. If not specified when 
+            optional the scheme of the current request is used.
+
+            ../Server[@domainSet] - The domain (FQDN) to the Resource Server. For development or test 
+            environments this may contain additional folder information (e.g. "shared.live-int.com/Server"). 
+            Do not add a trailing slash to this attribute value.
+        -->
+    <server scheme="http:" domainset="shared.live-int.com">
+      <proxy usesystemdefault="false" proxyaddress="http://itgproxy:80" bypassonlocal="true" />
+    </server>
+    <!-- 
+        _Node_Summary___________________________________________________________________________
+
+            Used to specify consumer parameters
+
+        _Additional_Schema_Remarks______________________________________________________________
+
+            ../add[@key] - The parameter name
+
+            ../add[@value] - The parameter value
+        -->
+    <appSettings>
+      <add key="PassportDLLLocation" value="C:/Program Files/Microsoft Passport RPS/Microsoft.Passport.RPS.dll" />
+      <add key="ThemeWriterUrl" value="~/ThemeWriter.aspx" />
+      <!-- Two letter abbreviation used in Ad Sponsored Themes-->
+      <add key="FeaturedThemePrefix" value="T4" />
+      <!-- If you have multiple front ends runing in the same machine set this to different values in each one of theme -->
+      <add key="SiteName" value="default" />
+      <!-- If your site needs to support all Cobrands regardless of the Catapult whitelist, set this value to true -->
+      <add key="IgnoreCobrandWhiteList" value="false" />
+    </appSettings>
+    <!-- 
+        _Node_Summary___________________________________________________________________________
+
+            Indicates if agent flags can be set without having to explicitly pass them in when 
+            requesting an agent instance and if so which ones are allowed given the debug/retail 
+            context. Note that this node is optional.
+
+        _Additional_Schema_Remarks______________________________________________________________
+
+            config/consumer/agentFlags[@debugMask] - When the useDebugConfig flag is set to true via the 
+            ResourceConsumer.Init(...) method this mask will be applied to any passed agent flags. This 
+            should be used to protect products against certain flag from being set in a given environment 
+            while allowing others. 0 allows all and all bits set (uint.MaxValue) disables all flags.
+
+            config/consumer/agentFlags[@retailMask] - When the useDebugConfig flag is set to false or 
+            omitted in the ResourceConsumer.Init(...) method this mask will be applied to any passed agent 
+            flags. This should be used to protect products against certain flag from being set in a given 
+            environment while allowing others. 0 allows all and all bits set (uint.MaxValue) disables 
+            all flags.
+
+            config/consumer/agentFlags[@settableVia] - This indicates how the flags can be set. Currently 
+            the only values supported are "Nothing" and "QueryString"
+            
+            config/consumer/agentFlags[@paramName] - This is the the query string paramter where non-
+            explicit agent flags will be picked up.
+        -->
+    <agentFlags settableVia="QueryString" debugMask="4294967295" retailMask="4294967295" paramName="LFE" />
+  </consumer>
+  <!-- 
+        _Node_Summary___________________________________________________________________________
+
+            A listing of all the agents that this consumer utilizes 
+
+        _Additional_Schema_Remarks______________________________________________________________
+
+            config/agents/agent/resourceVersion - This is the desired version of the agent that this consumer 
+            would like to use.
+ 
+            config/agents/agent/resourceServer - If this resource is to located on a certain set of Resources 
+            Servers or outside of the Shared Resource System altogether than this attribute indicates the 
+            location and the method of communication. (Optional)
+
+            config/agents/agent/agentContent - This allows hard-coded agent content to be specified in the 
+            configuration. This value will not be overwritten even if content is made with Resource Server 
+            (Optional and not recommended for non-development environments) 
+
+            config/agents/agent/agentContent[@isLogicXML] - Indicates if the contained Content is logic XML 
+            (and thus should be parsed) or just raw content or market to emitted.
+
+            config/agents/agent/agentContent/Content - The logic XML or raw content. Note: content that would 
+            affect the structure of the containing XML should be placed in an CDATA block or XML encoded.
+            config/agents/agent/defaultParams - This allows default agent parameters to be specified here in 
+            the configuration. This can be used if you find the same values are being passed into the agent 
+            repetitively. Explicitly set variables will overwrite these. Default parameter collection sent 
+            from the Resource Server will be added to this collection. Intersections between the two collection 
+            will result in the local copy prevailing. 
+
+            config/agents/agent/defaultParams/agentParams[@name] - Name of the parameter to key off of
+
+            config/agents/agent/defaultParams/agentParams[@value] - Value to be paired with the name
+
+            config/agents/agent[@name] - A string that represents a unique name for the agent. These strings 
+            are generated by the EFP when a new resource application (e.g. a shared control) is created and 
+            deployed.
+
+            config/agents/agent[@id] - An id to represent the agent being described by this node of XML. This 
+            is an optional attribute and should not be used unless coordinating with the EFP team. When the ID 
+            is omitted it is generated both on the Live Frontend and Resource Server side using the MD5 hash 
+            of the name and casted to a short. Specifying the id should only be done if the Live Frontend fails 
+            to product a hash value consistent with the hash on the server due to the hosted environment.
+
+            ../resourceVersion[@major] - Represents the major version of the parent element. Valid range: 0 - 255
+
+            ../resourceVersion[@minor] - The minor version of the parent element. Valid range: 0 - short.MaxValue
+
+            ../resourceVersion[@build] - Represents the major version of the parent element. Note that this 
+            should not included only the whole number build and not the extended dot build value. Valid range: 
+            0 - short.MaxValue
+
+            ../resourceServer[@scheme] - If this scheme is used by the context hosting the Live Frontend then 
+            the associated domainSet attribute will be used to construct URLs to the Resource Server. Include the ":"
+
+            ../resourceServer[@domainSet] - The domain (FQDN) to the Resource Server if the request scheme matches 
+            this element's scheme attribute. If not specified then the FQDN under the consumer node is used. In 
+            addition to the domain for development environments this may include  additional folder information (
+            e.g. "localhost/Server"). Do not add a trailing slash to this attribute value. 
+    -->
+  <agents>
+    <agent name="Live.CSSX.Profile">
+      <resourceVersion major="14" minor="1" build="8011" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.CSSX.Profile: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.CSSX.SNHome">
+      <resourceVersion major="14" minor="3" build="8011" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.CSSX.SNHome: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.CSSX.Spaces">
+      <resourceVersion major="14" minor="3" build="8011" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.CSSX.Spaces: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.CSSX.SpacesRss">
+      <resourceVersion major="14" minor="3" build="8011" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.CSSX.SpacesRss: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.CSSX.SpacesPhotoMail">
+      <resourceVersion major="14" minor="3" build="8011" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.CSSX.SpacesPhotoMail: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.CSSX.SpacesColors">
+      <resourceVersion major="14" minor="3" build="8011" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.CSSX.SpacesColors: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.CSSX.*">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.CSSX.*: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.Theme.*">
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.Theme.*: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.ALE.*">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.ALE.*: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.AleStrings">
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.AleStrings: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <!-- Theme manager - Used for theme picker control data -->
+    <agent name="Live.ThemeManager">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.ThemeManager: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.Control.*">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.Control.*: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.Controls.*">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.Controls.*: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <!-- The Gadget Frameworks. For more details see the document at: 
+        http://msnweb/teams/EFP/Framework/Framework%20Bindings%20Documentation.doc
+        -->
+    <agent name="Live.GadgetFramework">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.GadgetFramework: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <!-- Themes support. For more details see the design document at: 
+        http://msnweb/teams/EFP/ThemesCSSX/Windows%20Live%20Shared%20Themes.pdf
+        -->
+    <agent name="Live.Themes">
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.Themes: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <!-- Facilitates the retrieval of localized string for client side bindings.
+        -->
+    <agent name="Live.Strings">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.Strings: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <!-- For the MarketSense component. For details see the design document at:
+        http://msnweb/teams/EFP/Services/Market%20Detection/Market%20Determination%20Design.doc
+        -->
+    <agent name="Live.MarketSense">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.MarketSense: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <!-- For the BrowserSense component.  -->
+    <agent name="Live.BrowserSense">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.BrowserSense: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <!-- ContactControl -->
+    <agent name="Live.ContactControl">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.ContactControl: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <!-- PRP - PreRelease Platform control -->
+    <agent name="Live.PreReleasePlatform">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.PreReleasePlatform: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <!-- PRP - CorpnetAccess (used by PreRelease Platform control) -->
+    <agent name="Live.CorpnetAccess">
+      <resourceVersion major="14" minor="3" build="8038" />
+    </agent>
+    <agent name="Live.RichTextEditor">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.RichTextEditor: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.Brands">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.Brands: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.Controls.EditorialContent">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.Controls.EditorialContent: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.EditorialContent.Latest">
+      <resourceVersion major="14" minor="3" build="8038" />
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.EditorialContent.Latest: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.EditorialContent.Groups">
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.EditorialContent.Groups: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.EditorialContent.Groups.Preview">
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.EditorialContent.Groups.Preview: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.EditorialContent.Events">
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.EditorialContent.Events: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.EditorialContent.Events.Preview">
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.EditorialContent.Events.Preview: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.EditorialContent.Spaces">
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.EditorialContent.Spaces: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+    <agent name="Live.EditorialContent.Spaces.Preview">
+      <agentContent isLogicXML="false"><![CDATA[<!-- ERROR, Live.EditorialContent.Spaces.Preview: The initial connection between the Live Frontend and the Resource Server could not be made. -->]]></agentContent>
+    </agent>
+  </agents>
+</config>

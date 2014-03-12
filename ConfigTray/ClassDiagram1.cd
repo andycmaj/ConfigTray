@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ConfigTray.Configuration.ChoiceSetting" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\ChoiceSetting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConfigTray.Configuration.Setting" Collapsed="true">
+    <Position X="2.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAggAwAAAgAAAEAAAAAAQgBAAIAABAAAAgAAAAAAA=</HashCode>
+      <FileName>Configuration\Setting.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ConfigTray.Configuration.LiteralSetting" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\LiteralSetting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConfigTray.Configuration.ToggleSetting" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Configuration\ToggleSetting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConfigTray.Configuration.ConfigFile" Collapsed="true">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAwMAJAQAApIEAIAIAAQABAAAAAAIgAAAAQEAAAA=</HashCode>
+      <FileName>Configuration\ConfigFile.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Settings" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

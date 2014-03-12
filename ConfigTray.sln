@@ -1,0 +1,108 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C24997F-ECF5-45F4-8ABB-7E07DDD302F1}"
+	ProjectSection(SolutionItems) = preProject
+		SampleConfigs\app1.config = SampleConfigs\app1.config
+		ConfigTray Manual.docx = ConfigTray Manual.docx
+		ConfigTray.vsmdi = ConfigTray.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		ConfigTray\readme.txt = ConfigTray\readme.txt
+		SampleConfigs\uxpconfig.xml = SampleConfigs\uxpconfig.xml
+		SampleConfigs\version.txt = SampleConfigs\version.txt
+		SampleConfigs\web1.config = SampleConfigs\web1.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assembly", "Assembly", "{B9AF36A3-107E-4484-AF42-8EE39B67C0E6}"
+	ProjectSection(SolutionItems) = preProject
+		Assembly\CmdTools.CmdParser.dll = Assembly\CmdTools.CmdParser.dll
+		Assembly\NLog.dll = Assembly\NLog.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AddIns", "AddIns", "{B3D63D76-1F9C-48A0-A1F2-D5D73822EEA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigTray", "ConfigTray\ConfigTray.csproj", "{6EC332AA-50A8-4BD0-8BD8-290D37B12BA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigTray.Extensibility", "ConfigTray.Extensibility\ConfigTray.Extensibility.csproj", "{71DAA387-1A08-41F7-972F-B793E24D74DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAddIn", "TestPlugin\TestAddIn.csproj", "{95F7D8E4-E295-41B9-83F4-E0A19BE16205}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigTray.Testing", "ConfigTray.Testing\ConfigTray.Testing.csproj", "{6C0F5787-15EA-4530-B338-3D1578D7104A}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs01.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ConfigTray\\ConfigTray.csproj
+		SccProjectName1 = ConfigTray
+		SccLocalPath1 = ConfigTray
+		SccProjectUniqueName2 = ConfigTray.Extensibility\\ConfigTray.Extensibility.csproj
+		SccProjectName2 = ConfigTray.Extensibility
+		SccLocalPath2 = ConfigTray.Extensibility
+		SccProjectUniqueName3 = TestPlugin\\TestAddIn.csproj
+		SccProjectTopLevelParentUniqueName3 = ConfigTray.sln
+		SccProjectName3 = TestPlugin
+		SccLocalPath3 = TestPlugin
+		SccProjectUniqueName4 = ConfigTray.Testing\\ConfigTray.Testing.csproj
+		SccProjectName4 = ConfigTray.Testing
+		SccLocalPath4 = ConfigTray.Testing
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EC332AA-50A8-4BD0-8BD8-290D37B12BA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC332AA-50A8-4BD0-8BD8-290D37B12BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC332AA-50A8-4BD0-8BD8-290D37B12BA8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6EC332AA-50A8-4BD0-8BD8-290D37B12BA8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6EC332AA-50A8-4BD0-8BD8-290D37B12BA8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6EC332AA-50A8-4BD0-8BD8-290D37B12BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC332AA-50A8-4BD0-8BD8-290D37B12BA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC332AA-50A8-4BD0-8BD8-290D37B12BA8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6EC332AA-50A8-4BD0-8BD8-290D37B12BA8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6EC332AA-50A8-4BD0-8BD8-290D37B12BA8}.Release|x86.ActiveCfg = Release|Any CPU
+		{71DAA387-1A08-41F7-972F-B793E24D74DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71DAA387-1A08-41F7-972F-B793E24D74DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71DAA387-1A08-41F7-972F-B793E24D74DF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{71DAA387-1A08-41F7-972F-B793E24D74DF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{71DAA387-1A08-41F7-972F-B793E24D74DF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{71DAA387-1A08-41F7-972F-B793E24D74DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71DAA387-1A08-41F7-972F-B793E24D74DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71DAA387-1A08-41F7-972F-B793E24D74DF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{71DAA387-1A08-41F7-972F-B793E24D74DF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{71DAA387-1A08-41F7-972F-B793E24D74DF}.Release|x86.ActiveCfg = Release|Any CPU
+		{95F7D8E4-E295-41B9-83F4-E0A19BE16205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95F7D8E4-E295-41B9-83F4-E0A19BE16205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95F7D8E4-E295-41B9-83F4-E0A19BE16205}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{95F7D8E4-E295-41B9-83F4-E0A19BE16205}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{95F7D8E4-E295-41B9-83F4-E0A19BE16205}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{95F7D8E4-E295-41B9-83F4-E0A19BE16205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95F7D8E4-E295-41B9-83F4-E0A19BE16205}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95F7D8E4-E295-41B9-83F4-E0A19BE16205}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{95F7D8E4-E295-41B9-83F4-E0A19BE16205}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{95F7D8E4-E295-41B9-83F4-E0A19BE16205}.Release|x86.ActiveCfg = Release|Any CPU
+		{6C0F5787-15EA-4530-B338-3D1578D7104A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C0F5787-15EA-4530-B338-3D1578D7104A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C0F5787-15EA-4530-B338-3D1578D7104A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6C0F5787-15EA-4530-B338-3D1578D7104A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6C0F5787-15EA-4530-B338-3D1578D7104A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6C0F5787-15EA-4530-B338-3D1578D7104A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C0F5787-15EA-4530-B338-3D1578D7104A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C0F5787-15EA-4530-B338-3D1578D7104A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6C0F5787-15EA-4530-B338-3D1578D7104A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6C0F5787-15EA-4530-B338-3D1578D7104A}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{95F7D8E4-E295-41B9-83F4-E0A19BE16205} = {B3D63D76-1F9C-48A0-A1F2-D5D73822EEA3}
+	EndGlobalSection
+EndGlobal
